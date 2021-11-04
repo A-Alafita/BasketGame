@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var showGame : Bool = false
+    
+    @State var showGame: Bool = false
+    
     var body: some View {
-        ZStack{
+        ZStack {
             Color.blue
-            VStack{
-                Button {showGame.toggle()
-                    
+            VStack {
+                Button {
+                    showGame.toggle()
                 } label: {
-                    HStack{
+                    HStack {
                         Image("plane")
                             .resizable()
                             .scaledToFit()
@@ -27,12 +29,11 @@ struct ContentView: View {
                     .padding()
                     .background(Color.white)
                     .cornerRadius(20)
-                    
                 }
+
             }
         }
         .edgesIgnoringSafeArea(.all)
-        
         .fullScreenCover(isPresented: $showGame, onDismiss: nil) {
             GameView()
         }

@@ -12,20 +12,21 @@ struct GameView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @State var scene: SKScene = GameScene()
-    @State var score : Int = 0
+    @State var scene: SKScene = GameScene(.constant(0))
+    @State var score: Int = 0
+    
     var body: some View {
         ZStack {
             SpriteView(scene: scene)
                 .frame(width: 926, height: 444)
             VStack {
                 HStack {
-                    VStack{
-                            Text("Score: \(score)")
-                                .font(.body)
-                                .foregroundColor(.black)
-                                .padding(.leading,20)
-                                .padding(.top,10)
+                    VStack {
+                        Text("Score: \(score)")
+                            .font(.body)
+                            .foregroundColor(.black)
+                            .padding(.leading,20)
+                            .padding(.top, 10)
                     }
                     Spacer()
                     VStack {
@@ -51,9 +52,10 @@ struct GameView: View {
             AppDelegate.orientationLock = UIInterfaceOrientationMask.landscapeRight
             UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
             UIViewController.attemptRotationToDeviceOrientation()
+           
             scene = GameScene($score)
-            scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             scene.scaleMode = .aspectFit
+            scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             scene.size = CGSize(width: 926, height: 444)
 
         }
